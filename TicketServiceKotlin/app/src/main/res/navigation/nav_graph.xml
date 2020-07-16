@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/eventListFragment">
+    <fragment
+        android:id="@+id/eventListFragment"
+        android:name="com.example.ticketservicekotlin.presentation.eventlist.EventListFragment"
+        android:label="EventListFragment"
+        tools:layout="@layout/fragment_event_list">
+        <action
+            android:id="@+id/action_eventListFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.ticketservicekotlin.presentation.eventdetail.EventDetailFragment"
+        android:label="EventDetailFragment"
+        tools:layout="@layout/fragment_event_detail">
+        <argument
+            android:name="event"
+            app:argType="com.example.ticketservicekotlin.domain.model.Event" />
+    </fragment>
+</navigation>

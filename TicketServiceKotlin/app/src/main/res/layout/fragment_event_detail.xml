@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.ticketservicekotlin.presentation.eventdetail.EventDetailViewModel" />
+
+        <variable
+            name="event"
+            type="com.example.ticketservicekotlin.domain.model.Event" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.ticketservicenew.presentation.event.view.EventFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/event_row_layout"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/event_img"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:imageUrl="@{event.images.get(0)}"
+                tools:src="@tools:sample/backgrounds/scenic"/>
+
+            <TextView
+                android:id="@+id/event_date_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/double_margin"
+                android:layout_marginEnd="@dimen/triple_margin"
+                android:fontFamily="@font/dinpro_light"
+                android:text="@{event.dateFormat}"
+                android:textColor="@color/light_grey_color"
+                android:textSize="@dimen/common_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Date"
+                tools:textColor="@color/black_color" />
+
+            <TextView
+                android:id="@+id/event_description_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_margin"
+                android:layout_marginBottom="@dimen/triple_margin"
+                android:textColor="@color/orange_color"
+                android:textSize="@dimen/common_text_size"
+                android:textStyle="bold"
+                android:text="@{event.eventName}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Description" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/divider_height"
+                android:layout_marginStart="@dimen/double_margin"
+                android:layout_marginBottom="@dimen/margin"
+                android:background="@color/orange_color"
+                app:layout_constraintBottom_toTopOf="@+id/event_description_txt"
+                app:layout_constraintEnd_toEndOf="@id/event_row_layout"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/event_title_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/double_margin"
+                android:layout_marginBottom="@dimen/margin"
+                android:textColor="@color/orange_color"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:text="@{event.artist}"
+                app:layout_constraintBottom_toTopOf="@+id/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Artist" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/description_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/date_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_row_layout"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/description_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{event.description}"/>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/date_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/description_scroll"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{event.dateFormat}"
+            app:layout_constraintBottom_toTopOf="@+id/tickets_available_txt"
+            app:layout_constraintEnd_toStartOf="@id/start_time_txt"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tickets_available_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/price_range_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/price_range_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/registrationBottomPanel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <FrameLayout
+            android:id="@+id/registrationBottomPanel"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/buy_tickets_btn"
+                android:layout_width="@dimen/nav_button_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/orange_color"
+                android:gravity="center"
+                android:text="@string/buy_tickets"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/start_time_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{event.startTime}"
+            app:layout_constraintBottom_toTopOf="@+id/tickets_available_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/date_txt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
